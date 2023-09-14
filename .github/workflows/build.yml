@@ -15,6 +15,10 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        variant: [chrome, vlc]
+
     permissions:
       contents: write
 
@@ -34,7 +38,7 @@ jobs:
         run: |
           mkdir -p $BUILD_DIR
           cp lcufs/scripts/* $BUILD_DIR
-          cp repo/config/vlc.sh $BUILD_DIR/config.sh
+          cp repo/config/${{ matrix.variant }}.sh $BUILD_DIR/config.sh
 
       - name: Run build script
         run: |
