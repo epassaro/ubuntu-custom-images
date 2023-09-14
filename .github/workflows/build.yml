@@ -26,4 +26,4 @@ jobs:
         run: |
           cd lcufs/scripts
           cp default_config.sh config.sh
-          ./build.sh
+          ./build.sh -
