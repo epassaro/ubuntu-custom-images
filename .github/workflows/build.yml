@@ -1,0 +1,29 @@
+name: build
+
+on:
+  push:
+    branches:
+      - main
+
+    paths-ignore:
+      - 'README.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout LCUFS repository
+        uses: actions/checkout@v4
+        with:
+          repository: mvallim/live-custom-ubuntu-from-scratch
+          path: lcufs
+    
+      - name: Run build script
+        run: |
+          cd lcufs/scripts
+          cp default_config.sh config.sh
+          ./build.sh -
