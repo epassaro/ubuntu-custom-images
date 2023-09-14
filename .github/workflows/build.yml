@@ -21,6 +21,8 @@ jobs:
     steps:
       - name: Checkout this repository
         uses: actions/checkout@v4
+        with:
+          path: repo
 
       - name: Checkout LCUFS repository
         uses: actions/checkout@v4
@@ -32,7 +34,7 @@ jobs:
         run: |
           mkdir -p $BUILD_DIR
           cp lcufs/scripts/* $BUILD_DIR
-          cp ubuntu-custom-images/config/vlc.sh $BUILD_DIR/config.sh
+          cp repo/config/vlc.sh $BUILD_DIR/config.sh
 
       - name: Run build script
         run: |
@@ -43,4 +45,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: /tmp/build_dir/*.iso
+          path: '${{ env.BUILD_DIR }}/*.iso'
