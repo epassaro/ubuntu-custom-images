@@ -17,7 +17,7 @@ jobs:
 
     strategy:
       matrix:
-        variant: [chrome, vlc]
+        variant: [chrome]
 
     permissions:
       contents: write
@@ -45,8 +45,11 @@ jobs:
           cd $BUILD_DIR
           ./build.sh -
 
+      - name: Compress ISO
+        run: xz -v ubuntu-custom-${{ matrix.variant }}.iso
+
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: '${{ env.BUILD_DIR }}/*.iso'
+          path: '${{ env.BUILD_DIR }}/*.xz'
