@@ -8,22 +8,53 @@ on:
     paths-ignore:
       - 'README.md'
 
+env:
+  BUILD_DIR: /tmp/build_dir
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        variant: [vlc]
 
     permissions:
       contents: write
 
     steps:
+      - name: Checkout this repository
+        uses: actions/checkout@v4
+        with:
+          path: repo
+
       - name: Checkout LCUFS repository
         uses: actions/checkout@v4
         with:
           repository: mvallim/live-custom-ubuntu-from-scratch
           path: lcufs
-    
+
+      - name: Create build directory
+        run: |
+          mkdir -p $BUILD_DIR
+          cp lcufs/scripts/* $BUILD_DIR
+          cp repo/config/${{ matrix.variant }}.sh $BUILD_DIR/config.sh
+
       - name: Run build script
         run: |
-          cd lcufs/scripts
-          cp default_config.sh config.sh
+          cd $BUILD_DIR
           ./build.sh -
+
+      - name: Compress ISO image
+        run: |
+          cd $BUILD_DIR
+          bzip2 -9 ubuntu-custom-${{ matrix.variant }}.iso
+
+      - name: Upload assets
+        uses: ncipollo/release-action@v1
+        with:
+          tag: continuous
+          allowUpdates: true
+          artifacts: '${{ env.BUILD_DIR }}/*.bz2'
+          artifactErrorsFailBuild: true
+        # body: |
