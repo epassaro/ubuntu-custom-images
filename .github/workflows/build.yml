@@ -8,6 +8,9 @@ on:
     paths-ignore:
       - 'README.md'
 
+env:
+  BUILD_DIR: /tmp/build_dir
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,14 +19,28 @@ jobs:
       contents: write
 
     steps:
+      - name: Checkout this repository
+        uses: actions/checkout@v4
+
       - name: Checkout LCUFS repository
         uses: actions/checkout@v4
         with:
           repository: mvallim/live-custom-ubuntu-from-scratch
           path: lcufs
-    
+
+      - name: Create build directory
+        run: |
+          mkdir -p $BUILD_DIR
+          cp lcufs/scripts/* $BUILD_DIR
+          cp ubuntu-custom-images/config/vlc.sh $BUILD_DIR/config.sh
+
       - name: Run build script
         run: |
-          cd lcufs/scripts
-          cp default_config.sh config.sh
+          cd $BUILD_DIR
           ./build.sh -
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: my-artifact
+          path: /tmp/build_dir/*.iso
