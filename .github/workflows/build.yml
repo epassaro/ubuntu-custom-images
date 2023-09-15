@@ -48,7 +48,6 @@ jobs:
       - name: Compress ISO image
         run: |
           cd $BUILD_DIR
-          chown 
           gzip -9 ubuntu-custom-${{ matrix.variant }}.iso
 
       - name: Upload assets

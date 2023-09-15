@@ -69,7 +69,8 @@ function customize_image() {
     gnome-mines \
     gnome-sudoku \
     aisleriot \
-    hitori
+    hitori \
+    libreoffice-core
 }
 
 # Used to version the configuration.  If breaking changes occur, manual
