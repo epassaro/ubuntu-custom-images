@@ -41,7 +41,7 @@ export TARGET_PACKAGE_REMOVE="
 function customize_image() {
     # install graphics and desktop
     apt-get install -y \
-    xubuntu-desktop \
+    xubuntu-core
 
     # useful tools
     apt-get install -y \
@@ -54,16 +54,6 @@ function customize_image() {
     # vlc
     apt-get install -y \
     vlc
-
-    # purge
-    apt-get purge -y \
-    transmission-gtk \
-    transmission-common \
-    gnome-mines \
-    gnome-sudoku \
-    gnome-software \
-    libreoffice-* \
-    thunderbird
 }
 
 # Used to version the configuration.  If breaking changes occur, manual
