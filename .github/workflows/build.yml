@@ -45,11 +45,16 @@ jobs:
           cd $BUILD_DIR
           ./build.sh -
 
-      - name: Compress ISO
-        run: xz -v ubuntu-custom-${{ matrix.variant }}.iso
+      - name: Compress ISO image
+        run: |
+          cd $BUILD_DIR
+          xz -v ubuntu-custom-${{ matrix.variant }}.iso
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
+      - name: Upload assets
+        uses: ncipollo/release-action@v1
         with:
-          name: my-artifact
-          path: '${{ env.BUILD_DIR }}/*.xz'
+          tag: continuous
+          allowUpdates: true
+          artifacts: '${{ env.BUILD_DIR }}/*.xz'
+          artifactErrorsFailBuild: true
+        # body: |

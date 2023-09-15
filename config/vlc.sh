@@ -53,7 +53,10 @@ function customize_image() {
     nano \
     less
 
-    # VLC
+    # vbox guest utils
+    apt-get install -y virtualbox-guest-additions-iso
+
+    # vlc
     apt-get install -y \
     vlc
 
