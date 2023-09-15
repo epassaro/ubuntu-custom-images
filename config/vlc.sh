@@ -41,7 +41,7 @@ export TARGET_PACKAGE_REMOVE="
 function customize_image() {
     # install graphics and desktop
     apt-get install -y \
-    lubuntu-desktop \
+    xubuntu-desktop \
 
     # useful tools
     apt-get install -y \
@@ -59,12 +59,11 @@ function customize_image() {
     apt-get purge -y \
     transmission-gtk \
     transmission-common \
-    gnome-mahjongg \
     gnome-mines \
     gnome-sudoku \
-    aisleriot \
-    hitori \
-    libreoffice-*
+    gnome-software \
+    libreoffice-* \
+    thunderbird
 }
 
 # Used to version the configuration.  If breaking changes occur, manual
