@@ -9,7 +9,7 @@ on:
       - 'README.md'
 
 env:
-  BUILD_DIR: ${{ github.workspace }}/build_dir
+  BUILD_DIR: /tmp/build_dir
 
 jobs:
   build:
@@ -48,7 +48,8 @@ jobs:
       - name: Compress ISO image
         run: |
           cd $BUILD_DIR
-          xz -9 ubuntu-custom-${{ matrix.variant }}.iso
+          chown 
+          gzip -9 ubuntu-custom-${{ matrix.variant }}.iso
 
       - name: Upload assets
         uses: ncipollo/release-action@v1
