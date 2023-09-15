@@ -17,7 +17,7 @@ jobs:
 
     strategy:
       matrix:
-        variant: [xfce-vlc]
+        variant: [xfce-chrome, xfce-vlc]
 
     permissions:
       contents: write
