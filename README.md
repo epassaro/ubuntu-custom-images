@@ -8,7 +8,8 @@ An example repository to show how to build custom Ubuntu images with GitHub Acti
 
 ## Details
 - Custom images are built using a [GitHub Actions workflow](https://github.com/epassaro/ubuntu-custom-images/blob/main/.github/workflows/build.yml)
-- I selected the LXDE desktop environment and compressed the ISO using the `bz2` algorithm because GitHub assets have a limit of 2GB
+- Configuration files are located under the `config` folder
+-  I selected the LXDE desktop environment and compressed the ISO using the `bz2` algorithm because GitHub assets have a limit of 2GB
 
 ## Credits
 
