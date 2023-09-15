@@ -55,6 +55,6 @@ jobs:
         with:
           tag: continuous
           allowUpdates: true
-          artifacts: '${{ env.BUILD_DIR }}/*.xz'
+          artifacts: '${{ env.BUILD_DIR }}/*.gz'
           artifactErrorsFailBuild: true
         # body: |
