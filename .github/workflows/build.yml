@@ -57,4 +57,5 @@ jobs:
           allowUpdates: true
           artifacts: '${{ env.BUILD_DIR }}/*.bz2'
           artifactErrorsFailBuild: true
-        # body:
+          body: |
+            Automatically released through GitHub Actions
