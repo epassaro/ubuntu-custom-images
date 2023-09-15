@@ -3,13 +3,14 @@
 An example repository to show how to build custom Ubuntu images with GitHub Actions
 
 ## Usage
-- Download an compressed ISO image from the [releases section](https://github.com/epassaro/ubuntu-custom-images/releases)
+- Download a compressed ISO image from the [releases section](https://github.com/epassaro/ubuntu-custom-images/releases)
 - Create a bootable pendrive using `dd` or a tool like [ROSA Image Writer](http://wiki.rosalab.ru/en/index.php/ROSA_ImageWriter)
 
 ## Details
 - Configuration files are located under the `config` folder
 - Custom images are built using a [GitHub Actions workflow](https://github.com/epassaro/ubuntu-custom-images/blob/main/.github/workflows/build.yml)
--  I selected the XFCE desktop environment and compressed the ISO using the `bz2` algorithm because GitHub assets have a limit of 2GB
+- I made use of the `xubuntu-core` package, resulting in smaller image sizes
+- Images are compressed aggressively using `bzip2` (GitHub release assets have a limit of 2GB)
 
 ## Credits
 
