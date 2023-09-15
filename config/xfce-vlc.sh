@@ -41,7 +41,7 @@ export TARGET_PACKAGE_REMOVE="
 function customize_image() {
     # install graphics and desktop
     apt-get install -y \
-    xubuntu-core
+    xubuntu-core^
 
     # useful tools
     apt-get install -y \
